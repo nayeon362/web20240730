@@ -43,38 +43,68 @@ console.log('==============================');
     - for문 보다 성능이 많이 떨어짐, 가독성이 좋고 편리해서 자주 사용함
     - async await 작업은 forEach 메서드로 사용 불가능
 */
-array.forEach()
+array.forEach(function (item, index) {
+    console.log(`index : ${index}, item : ${item}`)
+});
 
 console.log('==============================');
 
 /*
-    map(콜백 함수) : 
-    - 
-    - 
+    map(콜백 함수) : 콜백 함수의 반환값들로 이루어진 새로운 배열을 생성해서 반환
+    - 원본 배열 변경 X
+    - forEach 단순히 요소나 인덱스를 가지고 작업만 진행 (반환값X), map은 요소나 인덱스를 가지고 작업한 결과로 새로운 배열을 반환 (반환값 O)
 */
+var mapArray = array.map(function ($, index) {
+    return index;
+});
+console.log(mapArray);
+
+var newArray = array.map(function (item) { return item; });
+console.log(newArray);
+
+// map을 일반 for문으로 구성
+// 1. 빈배열 생성
+var newArray = [];
+//2. for문 작성
+for (var index in array) {
+    var item = array[index];
+
+    // 3. 빈배열 요소 추가
+    if (item % 2 === 0) 
+    newArray.push(item * item);
+}
+
+console.log('==============================');
+
+/*
+    filter(콜백 함수) : 콜백 함수의 반환값이 true인 배열의 요소의 값만 추출한 새로운 배열을 생성
+    - 배열의 특정 케이스만 필터링 조건으로 추출해서 새로운 배열을 만들고 싶을 때 사용
+    - 원본 배열 변경 X
+*/
+var evenArray = array.filter(function (item, index) {
+    return item % 2 === 0;
+});
+console.log(evenArray);
 
 
 console.log('==============================');
 
 /*
-    filter(콜백 함수) : 
-    - 
-    - 
+    find(콜백 함수) : 콜백 함수의 결과가 true인 첫번째 요소를 반환 
 */
-
+var result = array.find(function (item, index) {
+    return item % 2 === 1;
+});
+console.log(result);
 
 console.log('==============================');
 
 /*
-    find(value, index) : 
+    findIndex(콜백 함수) : 콜백 함수 결과가 true인 첫번째 요소의 인덱스를 반환 
 */
-
-
-console.log('==============================');
-
-/*
-    find(value, index) : 
-*/
-
+var result = array.findIndex(function (item, index) {
+    return item %  2 === 1;
+});
+console.log(result);
 
 console.log('==============================');
